@@ -3,11 +3,12 @@ import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-contact',
-  templateUrl: 'contact.html'
+  templateUrl: 'addTemperature.html'
 })
-export class ContactPage {
-
+export class AddTemperaturePage {
+  today: any;
   constructor(public navCtrl: NavController) {
+    this.today = new Date().toISOString();
 
   }
 

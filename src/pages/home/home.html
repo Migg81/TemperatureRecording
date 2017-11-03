@@ -5,13 +5,40 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <ion-fab right bottom>
+    <button ion-fab (click)="addTempurature()" color="secondary">
+      <ion-icon name="add" large> </ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list>
+    <ion-card>
+      <ion-item>
+        <ion-icon ios="ios-thermometer" md="md-thermometer" item-left large></ion-icon>
+        <h2>Museum of Football</h2>
+        <p>11 N. Way St, Madison, WI 53703</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon ios="ios-calendar" md="md-calendar" item-left large></ion-icon>
+        <h2>Institute of Fine Cocktails</h2>
+        <p>14 S. Hop Avenue, Madison, WI 53703</p>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-icon ios="ios-thermometer" md="md-thermometer" item-left large></ion-icon>
+        <h2>Museum of Football</h2>
+        <p>11 N. Way St, Madison, WI 53703</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon ios="ios-calendar" md="md-calendar" item-left large></ion-icon>
+        <h2>Institute of Fine Cocktails</h2>
+        <p>14 S. Hop Avenue, Madison, WI 53703</p>
+      </ion-item>
+    </ion-card>
+  </ion-list>
 </ion-content>
