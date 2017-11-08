@@ -1,24 +1,35 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Tempurature
-    </ion-title>
+<ion-header padding-top>
+  <ion-navbar color="primary">
+      <ion-buttons left>
+          <button ion-button icon-only (click)="closeModal()">
+              <ion-icon name="arrow-dropleft"></ion-icon>
+          </button>
+      </ion-buttons>
+      <ion-title>Tempuraturet</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
 
-      <ion-item>
-        <ion-label floating>Start Time</ion-label>
-        <ion-datetime displayFormat="DD-MM-YYYY HH:mm" [(ngModel)]="today"></ion-datetime>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label floating>Tempurature</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-    
-    
-    </ion-list>
+    <ion-item>
+      <ion-label floating>Date</ion-label>
+      <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="today"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Time</ion-label>
+      <ion-datetime type="text" displayFormat="h:mm:A" pickerFormat="h:mm:A" [(ngModel)]="time"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Tempurature</ion-label>
+      <ion-input type="text" [(ngModel)]="tempurature"></ion-input>
+    </ion-item>
+
+    <button ion-button icon-right (click)="addtempurature()">
+      Add Tempurature
+      <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon>
+    </button>
+  </ion-list>
 </ion-content>

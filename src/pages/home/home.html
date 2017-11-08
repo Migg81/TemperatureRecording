@@ -12,33 +12,20 @@
     </button>
   </ion-fab>
 
-  <ion-list>
+
+  <ion-list *ngFor="let temperature of tempratureRecordes">
     <ion-card>
       <ion-item>
         <ion-icon ios="ios-thermometer" md="md-thermometer" item-left large></ion-icon>
-        <h2>Museum of Football</h2>
-        <p>11 N. Way St, Madison, WI 53703</p>
+        <h2>{{temperature.temperature}}</h2>
+        <p>{{temperature.temperaturelogTime}}</p>
       </ion-item>
 
       <ion-item>
         <ion-icon ios="ios-calendar" md="md-calendar" item-left large></ion-icon>
-        <h2>Institute of Fine Cocktails</h2>
-        <p>14 S. Hop Avenue, Madison, WI 53703</p>
+        <h2>{{temperature.temperaturelogDate}}</h2>
       </ion-item>
     </ion-card>
 
-    <ion-card>
-      <ion-item>
-        <ion-icon ios="ios-thermometer" md="md-thermometer" item-left large></ion-icon>
-        <h2>Museum of Football</h2>
-        <p>11 N. Way St, Madison, WI 53703</p>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon ios="ios-calendar" md="md-calendar" item-left large></ion-icon>
-        <h2>Institute of Fine Cocktails</h2>
-        <p>14 S. Hop Avenue, Madison, WI 53703</p>
-      </ion-item>
-    </ion-card>
   </ion-list>
 </ion-content>

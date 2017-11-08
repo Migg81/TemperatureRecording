@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ViewController } from 'ionic-angular';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { TemperatureRepoProvider } from '../../providers/temperature-repo/temperature-repo';
 
 @Component({
   selector: 'page-contact',
@@ -7,9 +9,22 @@ import { NavController } from 'ionic-angular';
 })
 export class AddTemperaturePage {
   today: any;
-  constructor(public navCtrl: NavController) {
-    this.today = new Date().toISOString();
+  time: string;
+  tempurature: string;
 
+
+  constructor(
+    public navCtrl: NavController,
+    public tempRepo: TemperatureRepoProvider,
+    public viewCtrl:ViewController,
+    private sqlite: SQLite) {
+    this.today = new Date().toDateString();
   }
 
+  addtempurature(): void {
+    this.tempRepo.addTempurature(this.today, this.time, this.tempurature);
+  }
+  closeModal(){
+    this.viewCtrl.dismiss();
+  }
 }

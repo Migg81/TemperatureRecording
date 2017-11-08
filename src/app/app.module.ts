@@ -5,6 +5,9 @@ import { MyApp } from './app.component';
 import { AboutPage, AddTemperaturePage, HomePage, TabsPage } from '../pages/pages';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { TemperatureRepoProvider } from '../providers/temperature-repo/temperature-repo';
+import { SQLite,SQLiteObject } from '@ionic-native/sqlite';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -28,8 +32,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   providers: [
     StatusBar,
+    SQLite,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    TemperatureRepoProvider
   ]
 })
 export class AppModule { }
