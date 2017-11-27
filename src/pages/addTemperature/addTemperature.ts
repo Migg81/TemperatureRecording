@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ViewController, LoadingController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { TemperatureRepoProvider } from '../../providers/temperature-repo/temperature-repo';
-import { HomePage } from '../pages';
+import { HomePage,TabsPage } from '../pages';
 import { ConverCTF, convertFTC } from '../../pipes/pipes';
 
 
@@ -41,7 +41,7 @@ export class AddTemperaturePage {
         .then(response => {
 
           this.viewCtrl.dismiss();
-          this.navCtrl.push(HomePage);
+          this.navCtrl.setRoot(TabsPage);
           loader.dismiss();
 
         }).catch((err) => {

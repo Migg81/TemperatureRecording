@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AddTemperaturePage, AboutPage, HomePage } from '../pages';
+import { AddTemperaturePage, TemperatureChartPage, HomePage } from '../pages';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { AddTemperaturePage, AboutPage, HomePage } from '../pages';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
+  tab2Root = TemperatureChartPage;
   tab3Root = AddTemperaturePage;
 
   constructor() {

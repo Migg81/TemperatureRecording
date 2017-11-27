@@ -47,7 +47,7 @@ export class HomePage {
           this.tempRepo.getAVGTempurature().then(da => {
             this.avGTempratureRecordes = da;
             loader.dismiss();
-            console.log(this.tempratureRecordes.length);
+            console.log(this.avGTempratureRecordes.length);
           }).catch(e => {
             console.log(e);
             loader.dismiss();

@@ -22,4 +22,30 @@ export class TemperatureDetailsPage {
     console.log('ionViewDidLoad TemperatureDetailsPage');
   }
 
+  // getTempDetails(): void {
+    
+  //       let loader = this.loadCtrl.create({
+  //         content: 'Getting data...'
+  //       });
+    
+  //       loader.present().then(() => {
+    
+  //         this.tempRepo.getDatabaseState().subscribe(rdy => {
+    
+  //           if (rdy) {
+  //             this.tempRepo.getTempurature().then(da => {
+  //               this.tempratureRecordes = da;
+  //               loader.dismiss();
+  //               console.log(this.tempratureRecordes.length);
+  //             }).catch(e => {
+  //               console.log(e);
+  //               loader.dismiss();
+  //             });
+  //           }
+    
+  //         });
+    
+  //       });
+  //     }
+
 }

@@ -8,7 +8,8 @@ export class ConverCTF implements PipeTransform {
     transform(record: any): any {
         if (record == null) return record;
 
-        record = ((record - 32) * 5) / 32;
+        record = ((record * 9) / 5 + 32).toFixed(2);;
+        
         return record;
     }
 }

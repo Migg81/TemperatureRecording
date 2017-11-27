@@ -29,14 +29,13 @@ export class TemperatureRepoProvider {
         .then((db: SQLiteObject) => {
 
           this.dbObject = db;
-          // let createSql: string =`drop table tbl_Temperatur`;
+          //let createSql: string =`DELETE FROM tbl_Temperature`;
 
           let createSql: string = `CREATE TABLE IF NOT EXISTS tbl_Temperature (
                                     temperatureId INTEGER  PRIMARY KEY AUTOINCREMENT,
                                     temperature TEXT NOT NULL,
                                     temperaturelogDate TEXT NOT NULL,
-                                    temperaturelogTime TEXT NOT NULL
-                                  ) ;`
+                                    temperaturelogTime TEXT NOT NULL)`;
 
           db.executeSql(createSql, {})
             .then(() => {
@@ -55,12 +54,12 @@ export class TemperatureRepoProvider {
 
   addTempurature(tempuraturelogDate: string, tempuraturelogTime: string, tempurature: string): Promise<any> {
 
-    // let insertSql: string =`drop database TemperaturRecorder.db`
+    //let insertSql: string = `drop  table  tbl_Temperature`;
     let insertSql: string = `INSERT INTO tbl_Temperature (
                             temperature,
                             temperaturelogDate,
                             temperaturelogTime)
-                            VALUES (?,?,?);`
+                            VALUES (?,?,?)`;
 
 
     return this.dbObject.executeSql(insertSql, [tempurature, tempuraturelogDate, tempuraturelogTime])
@@ -69,11 +68,13 @@ export class TemperatureRepoProvider {
         return true;
       }
       )
-      .catch(e => { return this.handleError(e) });
+      .catch(e => {
+        return this.handleError(e)
+      });
   }
 
   getTempurature(): Promise<TempRecorder[]> {
-    let selectSql: string = `SELECT temperatureId,temperature,temperaturelogDate,temperaturelogTime FROM tbl_Temperature`
+    let selectSql: string = `SELECT temperatureId,temperature,temperaturelogDate,temperaturelogTime FROM tbl_Temperature`;
 
     let records: TempRecorder[];
 
