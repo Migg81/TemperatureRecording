@@ -3,7 +3,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { AddTemperaturePage } from '../pages';
 import { TemperatureRepoProvider } from '../../providers/temperature-repo/temperature-repo';
-import { TempRecorder } from '../../Model/TempRecorder';
+import { TempRecorder,AVGTemperature } from '../../Model/Models';
 import { DatePipe } from '@angular/common';
 
 
@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 export class HomePage {
 
   tempratureRecordes: TempRecorder[];
+  avGTempratureRecordes:AVGTemperature[];
 
   constructor(
     public navCtrl: NavController,
@@ -43,8 +44,8 @@ export class HomePage {
       this.tempRepo.getDatabaseState().subscribe(rdy => {
 
         if (rdy) {
-          this.tempRepo.getTempurature().then(da => {
-            this.tempratureRecordes = da;
+          this.tempRepo.getAVGTempurature().then(da => {
+            this.avGTempratureRecordes = da;
             loader.dismiss();
             console.log(this.tempratureRecordes.length);
           }).catch(e => {

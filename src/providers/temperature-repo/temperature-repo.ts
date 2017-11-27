@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { TempRecorder } from '../../Model/TempRecorder';
+import { TempRecorder, AVGTemperature } from '../../Model/Models';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { Platform } from 'ionic-angular';
 
@@ -29,7 +29,7 @@ export class TemperatureRepoProvider {
         .then((db: SQLiteObject) => {
 
           this.dbObject = db;
-         // let createSql: string =`drop table tbl_Temperatur`;
+          // let createSql: string =`drop table tbl_Temperatur`;
 
           let createSql: string = `CREATE TABLE IF NOT EXISTS tbl_Temperature (
                                     temperatureId INTEGER  PRIMARY KEY AUTOINCREMENT,
@@ -53,9 +53,9 @@ export class TemperatureRepoProvider {
     });
   }
 
-  addTempurature(tempuraturelogDate: string, tempuraturelogTime: string, tempurature: string): void {
+  addTempurature(tempuraturelogDate: string, tempuraturelogTime: string, tempurature: string): Promise<any> {
 
-   // let insertSql: string =`drop database TemperaturRecorder.db`
+    // let insertSql: string =`drop database TemperaturRecorder.db`
     let insertSql: string = `INSERT INTO tbl_Temperature (
                             temperature,
                             temperaturelogDate,
@@ -63,10 +63,13 @@ export class TemperatureRepoProvider {
                             VALUES (?,?,?);`
 
 
-    this.dbObject.executeSql(insertSql, [tempurature, tempuraturelogDate, tempuraturelogTime])
-      .then(() => console.log('Insert Successful'))
-      .catch(e => { this.handleError(e) });
-
+    return this.dbObject.executeSql(insertSql, [tempurature, tempuraturelogDate, tempuraturelogTime])
+      .then(() => {
+        console.log('Insert Successful')
+        return true;
+      }
+      )
+      .catch(e => { return this.handleError(e) });
   }
 
   getTempurature(): Promise<TempRecorder[]> {
@@ -77,6 +80,24 @@ export class TemperatureRepoProvider {
     return this.dbObject.executeSql(selectSql, [])
       .then(data => {
         records = this.extractData(data);
+        return records;
+      })
+      .catch(e => {
+        return this.handleError(e);
+      });
+  }
+
+  getAVGTempurature(): Promise<AVGTemperature[]> {
+    let selectSql: string = ` SELECT AVG(temperature) as avgTemperature ,temperaturelogDate
+                              FROM tbl_Temperature 
+                              GROUP BY temperaturelogDate` ;
+
+
+    let records: AVGTemperature[];
+
+    return this.dbObject.executeSql(selectSql, [])
+      .then(data => {
+        records = this.extractAVGtempratureData(data);
         return records;
       })
       .catch(e => {
@@ -100,12 +121,30 @@ export class TemperatureRepoProvider {
           temperature: data.rows.item(i).temperature,
           temperaturelogDate: data.rows.item(i).temperaturelogDate,
           temperaturelogTime: data.rows.item(i).temperaturelogTime,
+          avgTemperature: data.rows.item(i).avgTemperature,
         }
         );
       }
     }
 
     return tempratureRecordes;
+  }
+
+  extractAVGtempratureData(data: any): AVGTemperature[] {
+
+    let avgTempratureRecordes: AVGTemperature[] = [];
+
+    if (data.rows.length > 0) {
+      for (var i = 0; i < data.rows.length; i++) {
+        avgTempratureRecordes.push({
+          temperaturelogDate: data.rows.item(i).temperaturelogDate,
+          avgTemperature: data.rows.item(i).avgTemperature,
+        }
+        );
+      }
+    }
+
+    return avgTempratureRecordes;
   }
 
   getDatabaseState() {

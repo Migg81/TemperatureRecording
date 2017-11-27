@@ -8,6 +8,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TemperatureRepoProvider } from '../providers/temperature-repo/temperature-repo';
 import { SQLite,SQLiteObject } from '@ionic-native/sqlite';
 import { HttpModule } from '@angular/http';
+import {ConverCTF,convertFTC} from '../pipes/pipes'
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { HttpModule } from '@angular/http';
     AboutPage,
     AddTemperaturePage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ConverCTF,
+    convertFTC
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { HttpModule } from '@angular/http';
     SQLite,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    TemperatureRepoProvider
+    TemperatureRepoProvider,
+    ConverCTF,
+    convertFTC
   ]
 })
 export class AppModule { }

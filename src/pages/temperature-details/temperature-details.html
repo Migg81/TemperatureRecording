@@ -1,8 +1,10 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+  
+    <ion-navbar>
+      <ion-title>temperatureDetails</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
 
 <ion-content padding>
 
@@ -12,12 +14,13 @@
     </button>
   </ion-fab>
 
-  <ion-list *ngFor="let temperature of avGTempratureRecordes">
+
+  <ion-list *ngFor="let temperature of tempratureRecordes">
     <ion-card>
       <ion-item>
         <ion-icon ios="ios-thermometer" md="md-thermometer" item-left large></ion-icon>
-        <h2>Celsius: {{temperature.avgTemperature | convertFTC }}</h2>
-        <h2>Fahrenheit: {{temperature.avgTemperature |convertCTF }}</h2>
+        <h2>{{temperature.temperature}}</h2>
+        <p>{{temperature.temperaturelogTime}}</p>
       </ion-item>
 
       <ion-item>
